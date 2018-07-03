@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/items', (req, res) => {
-  Item.find()
+  Item.find({})
     .then((items) => {
       res.json(items)
     })
