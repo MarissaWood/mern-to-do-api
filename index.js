@@ -2,11 +2,13 @@ const express = require('express')
 const parser = require('body-parser')
 const mongoose = require('./db/schema.js')
 const Item = mongoose.model('Item')
+const cors = require('cors')
 
 const app = express()
 
 app.set('port', process.env.PORT || 3001)
 app.use(parser.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.redirect('/api/items')
@@ -23,7 +25,10 @@ app.get('/api/items', (req, res) => {
 })
 
 app.post('/api/items', (req, res) => {
-  Item.create(req.body)
+  Item.create({
+    task: req.body,
+    status: 'incomplete'
+  })
     .then((item) => {
       res.json(item)
     })
