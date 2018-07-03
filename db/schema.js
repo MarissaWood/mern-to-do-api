@@ -1,10 +1,9 @@
 const mongoose = require('./connection.js')
+const Schema = mongoose.Schema
 
-const Item = new mongoose.Schema({
+const Item = new Schema({
   task: String,
   status: String
 })
 
-mongoose.model('Item', Item)
-
-module.exports = mongoose
+module.exports = mongoose.model('Item', Item)

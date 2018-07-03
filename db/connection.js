@@ -5,4 +5,6 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   mongoose.connect('mongodb://localhost/mern-to-do')
 }
+
+mongoose.Promise = Promise
 module.exports = mongoose
