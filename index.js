@@ -25,7 +25,10 @@ app.get('/api/items', (req, res) => {
 })
 
 app.post('/api/items', (req, res) => {
-  Item.create(req)
+  Item.create({
+    task: req.config.data,
+    status: 'incomplete'
+  })
     .then((item) => {
       res.json(item)
     })
