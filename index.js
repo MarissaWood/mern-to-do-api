@@ -25,7 +25,7 @@ app.get('/api/items', (req, res) => {
 })
 
 app.post('/api/items', (req, res) => {
-  Item.create(req)
+  Item.create(req.body)
     .then((item) => {
       res.json(item)
     })
