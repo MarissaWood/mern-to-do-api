@@ -1,0 +1,18 @@
+[
+    {
+    "task": "wash dishes",
+    "status": "incomplete"
+    },
+    {
+    "task": "Wash the laundry",
+    "status": "incomplete"
+    },
+    {
+    "task": "Mow the lawn",
+    "status": "incomplete"
+    },
+    {
+    "task": "Fold the laundry",
+    "status": "incomplete"
+    }
+]
