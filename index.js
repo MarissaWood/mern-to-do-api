@@ -47,7 +47,11 @@ app.get('/api/items/:id', (req, res) => {
 app.put('/api/items/:id', (req, res) => {
   Item.findById(req.params.id, function (err, item) {
     if (err) { res.send(err)}
-    item.status = 'complete' // update the status
+    if (item.status === 'incomplete') {
+      item.status = 'complete' // update the status
+    } else {
+      item.status = 'incomplete'
+    }
     // save the item
     item.save(function (err) {
       if (err) { res.send(err)}
