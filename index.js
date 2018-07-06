@@ -1,14 +1,19 @@
 const express = require('express')
 const parser = require('body-parser')
 const mongoose = require('./db/schema.js')
-const Item = mongoose.model('Item')
+
 const cors = require('cors')
+const passport = require('./config/passport')()
+const userController = require('./controllers/users.js')
+const Item = mongoose.model('Item')
 
 const app = express()
 
 app.set('port', process.env.PORT || 3001)
 app.use(parser.json())
 app.use(cors())
+app.use(passport.initialize())
+app.use('/users', userController)
 
 app.get('/', (req, res) => {
   res.redirect('/api/items')
