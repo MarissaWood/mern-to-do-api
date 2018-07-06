@@ -1,8 +1,8 @@
 const should = require('chai').should()
 const expect = require('chai').expect
 const supertest = require('supertest')
-// const api = supertest('https://mern-to-do-api.herokuapp.com')
-const api = supertest('http://localhost:3001')
+const api = supertest('https://mern-to-do-api.herokuapp.com')
+// const api = supertest('http://localhost:3001')
 
 describe('GET /api/items', function () {
   it('should return a 200 response', function (done) {
