@@ -120,36 +120,42 @@ describe('DELETE /api/items/:id',  () => {
     })
   })
   
-//   describe('PUT /api/items/:id',  () => {
-//     let itemToUpdate
-//     before( done => {
-//       api.get('/api/items')
-//          .set('Accept', 'application/json')
-//          .end( (error, response) => {
-//            itemToUpdate = response.body[0]
-//            done()
-//          })
-//     })
-//     before( done => {
-//       api .put(`/api/items/${itemToUpdate._id}`)
-//         .set('Accept', 'application/json')
-//         .send({
-//           '_id': itemToUpdate._id,
-//           'task': itemToUpdate.task,
-//           'status': 'complete'
-//         })
-//         .end( (error, response) => {
-//           done()
-//         })
-//     })
-//     it('can update a task by id',  done => {
-//       api
-//         .get(`/api/items/${itemToUpdate._id}`)       
-//         .set('Accept', 'application/json')       
-//         .end( (error, response) => {       
-//         expect(response.body.status).to.equal('complete')       
-//           done()       
-//         })
-//   })
-  
-//   })
+  describe('PUT /api/items/:id',  () => {
+    let itemToUpdate
+    let status
+    before( done => {
+      api.get('/api/items')
+         .set('Accept', 'application/json')
+         .end( (error, response) => {
+           itemToUpdate = response.body[0]
+           status = response.body[0].status
+           done()
+         })
+    })
+    before( done => {
+      api .put(`/api/items/${itemToUpdate._id}`)
+        .set('Accept', 'application/json')
+        // .send({
+        //   '_id': itemToUpdate._id,
+        //   'task': itemToUpdate.task,
+        //   'status': 'complete'
+        // })
+        .end( (error, response) => {
+          done()
+        })
+    })
+    it('can update a task by id',  done => {
+      api
+        .get(`/api/items/${itemToUpdate._id}`)       
+        .set('Accept', 'application/json')       
+        .end( (error, response) => {       
+          if (status ==='incomplete') {
+            expect(response.body.status).to.equal('complete')
+          } else {
+            expect(response.body.status).to.equal('incomplete')
+          }
+
+          done()       
+        })
+  })
+  })
